@@ -1,0 +1,62 @@
+.navbar {
+  background-color: white;
+  height: 80px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add subtle shadow for a more refined look */
+  padding: 0 20px; /* Add padding for better spacing */
+}
+
+.btn-dropdown {
+  background-color: green;
+  color: white; /* Ensure good contrast */
+  padding: 8px 16px; /* Better button padding */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.btn-dropdown:hover {
+  background-color: darkgreen; /* Darker shade on hover */
+}
+
+.nav-link {
+  color: #666777;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: black;
+
+}
+
+
+@media (min-width: 991px) {
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: green;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out; /* Smoother width transition */
+  }
+
+  .nav-link:hover::before 
+  {
+    width: 100%;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 991px) {
+  .btn-dropdown {
+    display: none; /* More appropriate for removing the button */
+  }
+}

@@ -1,0 +1,45 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %} Admin Items {% endblock %}
+
+
+{% block body %}
+<section class='table_section'></section>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Product Name</th>
+        <th scope="col">Current Price</th>
+        <th scope="col">Previous Price</th>
+        <th scope="col">In Stock</th>
+        <th scope="col">flash_sale</th>
+        <th scope="col">date_added</th>
+        <th scope="col">Delete Item</th>
+        <th scope="col">Update Item</th>
+        <th scope="col">Product Picture</th>
+
+      </tr>
+    </thead>
+    <tbody>
+    {% for itme in items%}
+        <tr>
+            <th scope="row">{{itme.product_name}}</th>
+            <td>{{itme.current_price}}</td>
+            <td>{{itme.previous_price}}</td>
+            <td>{{itme.in_stock}}</td>
+            <td>{{itme.flash_sale}}</td>
+            <td>{{itme.date_added}}</td>
+            <td>
+            <form method="POST">
+                <input type="hidden" name='delete' value="{{ itme.id }}">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            </td>
+
+            <td><a href="/update-item/{{itme.id}}" class="btn btn-primary">Update</a></td>
+            <td><img class ="img-product" src="{{itme.product_picture}}"></td>
+        </tr>
+    {%endfor%}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+
+<section class="slide-sec  container ">
+    <div id="carouselExampleControls" class="carousel slide  mt-5  " data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for item in items %}
+                <div class="carousel-item c-item {% if loop.first %}active{% endif %}">
+                    <img class="d-block w-100 c-img " src="{{ item.product_picture }}" alt="Product image of {{ item.name }}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ item.current_price }}</h5>
+                        <p><del>{{ item.previous_price }}</del></p>
+                        <button type="button" class="btn btn-success" aria-label="Add {{ item.name }} to cart">Add to Cart</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<section class="cards-sell mt-3 container">
+    <div class="container">
+        <div class="row ">
+            {% for item in items %}
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-4 col-xxl-3  row-card ">
+                    <a href="/product-view/{{item.id}}" >
+                        <div class="card mt-3">
+                            <div class="card-img">
+                                <img class="card-img-top cart-i" src="{{ item.product_picture }}" alt="Product image of {{ item.name }}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.product_name}}</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h6>{{item.current_price}}</h6>
+                                <h6><del>{{item.previous_price}}</del></h6>
+                                <!-- <a href="/add-cart/{{ item.id }}" data-id={{item.id}} class="btn btn-outline-success btn-cart">Add to Cart</a> -->
+                                <div  class="hidden-success success-message">Item added successfully!</div>
+                                <div  class="hidden-log-in success-message">please Log In!</div>
+                                {% if current_user.is_authenticated %}
+                                    <a  data-id={{item.id}}  onclick="showMessage('success')"  class="btn btn-outline-success btn-cart">Add to Cart</a>
+                                {% else %}
+                                <a  data-id={{item.id}}  onclick="showMessage('login')"  class="btn btn-outline-success btn-cart">Add to Cart</a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+        </div>
+            </div>
+</section>
+{% endblock %}

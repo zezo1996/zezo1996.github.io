@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}View Product{% endblock %}
+
+{% block body %}
+<div style="height: 20vh;"></div>
+<section class="cards-sell mt-4 container">
+    <div class="container">
+        <div class="card" style="width: 50%;">
+            <img class="card-img-top" src=".{{item.product_picture}}" alt="Product image of {{ item.name }}"
+                 {% if not item.product_picture %} style="display:none;" {% endif %}>  <!-- Hide if no image -->
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product_name }}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">{{ item.product_name }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

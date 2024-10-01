@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %} Cart {% endblock %}
+
+{% block body %}
+<section class="container sec-cart" style="margin-top:100px">
+    <div class="row" style="display: flex; justify-content:  space-between; align-items: flex-start;">
+        <div class="col-6 col-11 col-lg-6">
+            {% for item in cart %}
+            <div class="row mb-4" style="height:30vh ">
+                <!-- img -->
+                <div class="col-6" style="height:100%">
+                    <img src="{{item.product.product_picture}}" class="w-100 h-100">
+                </div>
+
+                <!-- info -->
+                <div class="col-6">
+                    <p>Some quick example text to build on the card title and make up the bulk of the card's content</p>
+                    <h3 style="color:red;">price Befor: <del>{{item.product.previous_price}}</del></h3>
+                    <h3 style="color:skyblue;">Price After: {{item.product.current_price}}</h3>
+
+                    <!-- Qty and puls mins -->
+                    <div style="display:felx">
+                        <span class="badge rounded-pill text-bg-light p-3 qty" >Qty: {{item.quantity}}</span>
+                        <a href="{{ url_for('view.delete_item_cart', item_id=item.id) }}" class="btn btn-outline-dark">Delete</a>
+
+                        <!-- button + - -->
+                        <i class="bi bi-plus-circle color mx-3 increase"  data-id={{item.id}} style="font-size:1.5em; cursor:pointer;"></i>
+
+                        <i class="bi bi-dash-circle decrease"  data-id={{item.id}} style="font-size:1.5em; cursor:pointer;"></i>
+
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            {%endfor%}
+
+        </div>
+        <!-- buy section -->
+        {% if cart %}
+            <div class="col-4">
+
+                    <ul class="list-group ">
+                    <li class="list-group-item bg-success total-price"><b> Total Price: {{total_price}}$</b></li>
+
+                    <li class="list-group-item shipping-cost"><b>  Shipping Cost: 20$ </b></li>
+                    <li class="list-group-item total-add-shiping"><b>  Price with Shipping: {{total_price + 20}}$ </b></li>
+                    <li class="list-group-item">
+                    <a  href='/order' class="btn btn-success px-4">Buy Now</a>
+                    </li>
+                    </ul>
+            </div>
+            {% else %}
+                <div class="empty-cart container">
+                    <h2>Your cart is empty</h2>
+                </div>
+
+            {% endif %}
+
+
+    </div>
+</section>
+
+{% endblock %}

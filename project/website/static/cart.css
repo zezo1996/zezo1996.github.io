@@ -1,0 +1,14 @@
+.empty-cart {
+    width: 80vw; /* 80% of the viewport width */
+    height: 80vh; /* 80% of the viewport height */
+    display: flex; /* Centers the content */
+    justify-content: center; /* Horizontally center the text */
+    align-items: center; /* Vertically center the text */
+    background: linear-gradient(to bottom right, #f2f2f2, #cccccc); /* Gradient background */
+    border: 2px solid #ddd; /* Light border around the div */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-size: 2rem; /* Larger text size */
+    color: #333; /* Text color */
+    margin-bottom: 100px;
+}
